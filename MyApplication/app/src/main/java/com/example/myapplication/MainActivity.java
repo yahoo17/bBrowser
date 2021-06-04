@@ -11,18 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.ui.AppBarConfiguration;
 
-//import com.example.myapplication.databinding.ActivityMainBinding;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FrameLayout frameLayout;
-    private FragmentTransaction transaction;
-    private FirstFragment firstFragment;
-    private SecondFragment secondFragment;
     private Fragment mFragment;
     private BottomNavigationBar bottom_navigation_bar_container;
     //点击菜单键弹出菜单窗口
@@ -103,24 +97,6 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment=fragmentFactory.getFragment(0);
         fragmentTransaction.add(R.id.fragment_content,fragment);
         fragmentTransaction.commit();
-
-    }
-    //切换fragment
-    private void switchFragment(Fragment fragment) {
-        //判断当前显示的Fragment是不是切换的Fragment
-        if(mFragment != fragment) {
-            //判断切换的Fragment是否已经添加过
-            if (!fragment.isAdded()) {
-                //如果没有，则先把当前的Fragment隐藏，把切换的Fragment添加上
-                getSupportFragmentManager().beginTransaction().hide(mFragment)
-                        .add(R.id.fragment_content,fragment).commit();
-            } else {
-                //如果已经添加过，则先把当前的Fragment隐藏，把切换的Fragment显示出来
-                getSupportFragmentManager().beginTransaction().hide(mFragment).show(fragment).commit();
-            }
-            mFragment = fragment;
-        }
-
 
     }
 }
