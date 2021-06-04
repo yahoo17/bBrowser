@@ -12,36 +12,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.myapplication.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {
-
-    private FragmentSecondBinding binding;
-
     @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
-
-        binding = FragmentSecondBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_second, container, false);
+        return view;
     }
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
-            }
-        });
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-
 }

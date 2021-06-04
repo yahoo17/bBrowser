@@ -11,11 +11,11 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.myapplication.databinding.FragmentFirstBinding;
 
-public class FirstFragment extends Fragment {
+public class ForthFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_first, container, false);
+        View view = inflater.inflate(R.layout.fragment_forth, container, false);
         return view;
     }
 
