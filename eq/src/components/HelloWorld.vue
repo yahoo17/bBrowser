@@ -3,9 +3,9 @@
         <div class="search">
             <div class="col-lg-6">
                 <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for...">
+                <input type="text" class="form-control" placeholder="请输入网址" v-model="searchtext">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
+                    <button class="btn btn-default" type="button" @click="search(searchtext)">Go!</button>
                 </span>
                 </div><!-- /input-group -->
             </div> 
@@ -18,44 +18,23 @@
                     <li role="presentation"><a href="http://www.china.com.cn/" class="font-nav">中国网</a></li>
                     <li role="presentation"><a href="https://news.gmw.cn/" class="font-nav">光明网</a></li>
                 </ul>
-                <ul class="nav nav-pills web_nav1 .nav-justified">
-                    <li role="presentation"><a href="#" class="font-nav1">推荐</a></li>
-                    <li role="presentation"><a href="#" class="font-nav1">视频</a></li>
-                    <li role="presentation"><a href="#" class="font-nav1">娱乐</a></li>
-                    <li role="presentation"><a href="#" class="font-nav1">疫情</a></li>
-                    <li role="presentation"><a href="#" class="font-nav1">618</a></li>
+                <ul class="nav nav-pills .nav-justified">
+                    <li role="presentation" class="web_nav1" @click="pbutton0()">推荐</li>
+                    <li role="presentation" class="web_nav1" @click="pbutton1()">影视</li>
+                    <li role="presentation" class="web_nav1" @click="pbutton2()">娱乐</li>
+                    <li role="presentation" class="web_nav1" @click="pbutton3()">疫情</li>
+                    <!-- <li role="presentation"><a href="#" class="font-nav1">618</a></li>
                     <li role="presentation"><a href="#" class="font-nav1">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                    </a></li>
+                    </a></li> -->
                 </ul>
         </div>
 
-            <!-- 主要文字 -->
-            <div class="main_content">
-                <div class="media">
-                    <div class="media-body">
-                        浏览器是用来检索、展示以及传递Web信息资源的应用程序。Web信息资源由统一资源标识符所标记，它是一张网页、一张图片、一段视频或者任何在Web上所呈现的内容。使用者可以借助超级链接，通过浏览器浏览互相关联的信息。    
-                    </div>
-                </div>
-                <div class="media-left media-middle day_choice">每日精选</div>
-            </div>
-
-            <!-- 大图 -->
-            <div class="img_container">
-                <a href="#">
-                    <img class="media-object img" src="../assets/cat.jpg">
-                </a>
-            </div>
-
-            <div class="media bottom_cantainer">
-                <div class="media-body media-middle text">
-                    浏览器是用来检索、展示以及传递Web信息资源的应用程序。  
-                </div>
-                <div class="media-right cat_img">
-                    <a href="#">
-                    <img class="media-object img1" src="../assets/cat.jpg">
-                    </a>
-                </div>
+            <div class="comp">
+                <!-- 动态组件部分 -->
+            <keep-alive>
+                <component :is="pageNum"/>
+            </keep-alive>
             </div>
 
     </div>
@@ -65,22 +44,89 @@
 import 'jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
+import Recommend from '../components/Recommend.vue'
+import Video from '../components/Video'
+import Outbreaks from '../components/Outbreaks'
+import Entertainment from '../components/Entertainment'
 export default {
   name: 'HelloWorld',
-  data () {
-    return {
-    }
+  data(){
+      return{
+          isActive: 0,
+          //搜索内容
+          searchtext: '',
+      }
+  },
+  components: {
+      Recommend,
+      Video,
+      Outbreaks,
+      Entertainment
+  },
+  computed: {
+      pageNum(){
+          switch(this.isActive){
+              case 0:
+                  return "Recommend"
+                  break;
+              case 1:
+                  return "Video"
+                  break;
+              case 2:
+                  return "Entertainment"
+                  break;
+              case 3:
+                  return "Outbreaks"
+                  break;
+              default:
+                  return "Outbreaks"
+          }
+      }
+  },
+  methods: {
+      pbutton0: function(){
+          this.isActive = 0;
+        //   console.log("切换组件！")
+      },
+      pbutton1: function(){
+          this.isActive = 1;
+        //   console.log("切换组件！")
+      },
+      pbutton2: function(){
+          this.isActive = 2;
+        //   console.log("切换组件！")
+      },
+      pbutton3: function(){
+          this.isActive = 3;
+        //   console.log("切换组件！")
+      },
+      search: function(text){
+          console.log("搜索"+text);
+          window.location.href = 'https://'+text;
+      }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+li,ul{
+    list-style:none;
+}
 .search {
     margin-top: 2rem;
 }
 .nav_container{
     -webkit-margin-start: 1rem;
+}
+.web_nav1{
+    display: block;
+    padding: 1rem 2rem;
+}
+.web_nav1:hover{
+    cursor: pointer;
+    background-color: rgb(94, 97, 136);
+    color: white;
 }
 .font-nav{
     font-size: 12px;
@@ -108,7 +154,13 @@ export default {
     margin-left: 2rem;
 }
 .text{
-    flex:7;
+    color:black;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.text1{
+    flex: 7;
 }
 .cat_img{
     flex:2;
@@ -116,5 +168,11 @@ export default {
 .img1{
     width: 100%;
     height: auto;
+}
+.comp {
+    width: 100%;
+}
+a {
+    text-decoration: none;   
 }
 </style>
