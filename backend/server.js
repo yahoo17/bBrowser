@@ -26,10 +26,9 @@ app.get('/register', (req, res) => {
 app.post('/register', function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
-    if(username == null || password == null)
-    {
+    if (username == null || password == null) {
         failureCallback();
-        
+
     }
 
     console.log(req.body);
@@ -49,6 +48,31 @@ app.post('/register', function (req, res) {
 
 });
 
+app.post('/login', function (req, res) {
+    let username = req.body.username;
+    let password = req.body.password;
+    if (username == null || password == null) {
+        failureCallback();
+    }
+
+    // 成功的回调函数
+    function successCallback(result) {
+        if (result[0].password == password) {
+            console.log("登录成功: " + result);
+            res.json({ok: true});
+        } else {
+            console.log("登录失败: 密码错误");
+            res.json({ok: false});
+        }
+    }
+
+    // 失败的回调函数
+    function failureCallback(error) {
+        console.log("登录失败: " + error);
+    }
+
+    bSQL.QueryUser(username, successCallback, failureCallback);
+});
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)

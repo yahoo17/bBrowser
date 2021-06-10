@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 // var connection = mysql.createConnection({
-  
+
 //   host: '9.135.222.3',
 //   user: 'root',
 //   port: '3306',
@@ -9,21 +9,21 @@ var mysql = require('mysql');
 //   useConnectionPooling: true
 // });
 
-var connection = mysql.createConnection({
-  host: 'sh-cynosdbmysql-grp-k6exixzk.sql.tencentcdb.com',
-  user: 'root',
-  port: '20769',
-  password: 'mk5588MKU',
-  database: 'bBrowser',
-  useConnectionPooling: true
-});
-
 // var connection = mysql.createConnection({
-//     host     : 'localhost',
-//     user     : 'root',
-//     password : '1234',
-//     database : 'bBrowser'
-//   });
+//   host: 'sh-cynosdbmysql-grp-k6exixzk.sql.tencentcdb.com',
+//   user: 'root',
+//   port: '20769',
+//   password: 'mk5588MKU',
+//   database: 'bBrowser',
+//   useConnectionPooling: true
+// });
+
+var connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '123456',
+  database: 'bbrowser'
+});
 // docker run -itd --name mysql-test -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql
 
 
@@ -33,7 +33,7 @@ function ModifyUser() {
   var modSqlParams = ['菜鸟移动站', 'https://m.runoob.com', 6];
 }
 
-function InsertUser(username, password, successCallback,failureCallback ) {
+function InsertUser(username, password, successCallback, failureCallback) {
 
   var result = 99;
   connection.connect();
@@ -53,25 +53,30 @@ function InsertUser(username, password, successCallback,failureCallback ) {
     console.log('-----------------------------------------------------------------\n\n');
     // connection.end();
   });
-  if(result > 0)
-  {
+  if (result > 0) {
     successCallback(result);
-  }else
-  {
-    failureCallback(result); 
+  } else {
+    failureCallback(result);
   }
 }
 
 
 // InsertUser('bee', '6666');
 
-function QueryUser() {
+function QueryUser(username, successCallback, failureCallback) {
   connection.connect();
-  var sql = 'SELECT * FROM User';
 
-  connection.query(sql, function (err, result) {
+  var sql = 'SELECT password FROM User WHERE username = ?';
+
+  var sqlParams = [];
+  sqlParams.push(username);
+
+  var result;
+
+  connection.query(sql, sqlParams, function (err, result) {
     if (err) {
       console.log('[SELECT ERROR] - ', err.message);
+      failureCallback(err);
       return;
     }
 
@@ -79,13 +84,12 @@ function QueryUser() {
     console.log(result);
     console.log('------------------------------------------------------------\n\n');
 
+    successCallback(result);
   });
-  // connection.end();
-
 }
 
 function handleDisconnect(connection) {
-  connection.on('error', function(err) {
+  connection.on('error', function (err) {
     if (!err.fatal) {
       return;
     }
