@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+import android.webkit.WebView;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     //点击菜单键弹出菜单窗口
     private BottomNavigationItem menu;
 
+    private WebView webView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,27 +43,38 @@ public class MainActivity extends AppCompatActivity {
                 .addItem(new BottomNavigationItem(R.drawable.back,"")).setActiveColor(R.color.black).setInActiveColor(R.color.black)
                 .addItem(new BottomNavigationItem(R.drawable.next,"")).setActiveColor(R.color.purple_200).setInActiveColor(R.color.black)
                 .addItem(new BottomNavigationItem(R.drawable.search,"")).setActiveColor(R.color.purple_200).setInActiveColor(R.color.black)
-                .addItem(new BottomNavigationItem(R.drawable.window,"")).setActiveColor(R.color.purple_200).setInActiveColor(R.color.black)
+                .addItem(new BottomNavigationItem(R.drawable.home,"")).setActiveColor(R.color.purple_200).setInActiveColor(R.color.black)
                 .addItem(menu).setActiveColor(R.color.purple_200).setInActiveColor(R.color.black)
                 .initialise();
         bottom_navigation_bar_container.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener(){
             //当点击进入这个fragment
             @Override
             public void onTabSelected(int position) {
-                //获取fragment对象
-                Fragment fragment= fragmentFactory.getFragment(position);
-                //创建fragment管理器
-                FragmentManager fm=getSupportFragmentManager();
-                //获取fragment事务
-                FragmentTransaction transaction=fm.beginTransaction();
-                //判断fragment是否添加
-                if (!fragment.isAdded()){ //如果没有添加,进行添加到activity
-                    transaction.add(R.id.fragment_content,fragment);
-                }else {   //添加了，就进行显示
-                    transaction.show(fragment);
+                if(position==0){
+                    Toast.makeText(MainActivity.this,"返回上一级",Toast.LENGTH_SHORT).show();
                 }
-                //保存并提交
-                transaction.commit();
+                else if(position==1){
+                    Toast.makeText(MainActivity.this,"去往上次页面",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    //获取fragment对象
+                    Fragment fragment= fragmentFactory.getFragment(position);
+                    //创建fragment管理器
+                    FragmentManager fm=getSupportFragmentManager();
+                    //获取fragment事务
+                    FragmentTransaction transaction=fm.beginTransaction();
+                    //判断fragment是否添加
+                    if (!fragment.isAdded()){ //如果没有添加,进行添加到activity
+                        if(position==0){}
+                        if(position==1){}
+                        else transaction.add(R.id.fragment_content,fragment);
+                    }else {   //添加了，就进行显示
+                        transaction.show(fragment);
+                    }
+//                    transaction.show(fragment);
+                    //保存并提交
+                    transaction.commit();
+                }
             }
             //从这个fragment离开
             @Override
@@ -78,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     //初始化fragment
     private void initFirstFragment() {
         //使用fragmentTransaction.hide和show可能会导致重影
@@ -94,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         }
         //进入时默认显示第一个fragment界面
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-        Fragment fragment=fragmentFactory.getFragment(0);
+        Fragment fragment=fragmentFactory.getFragment(3);
         fragmentTransaction.add(R.id.fragment_content,fragment);
         fragmentTransaction.commit();
 
