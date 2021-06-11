@@ -3,7 +3,6 @@ package com.example.myapplication;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
-//import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,19 +11,19 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-public class ThirdFragment extends Fragment {
+public class WebViewFragment extends Fragment {
+    private static final WebViewFragment INSTANCE = new WebViewFragment();
+    public static WebViewFragment getInstance(){
+        return INSTANCE;
+    }
     private WebView webview;
     private WebSettings settings;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_third, container,false);
+        return inflater.inflate(R.layout.fragment_webview, container,false);
     }
 
     @Override
@@ -61,9 +60,11 @@ public class ThirdFragment extends Fragment {
             }
         });
         //打开的网址
-        webview.loadUrl("http://enquiries-2gjb84chaea8dede-1301979031.tcloudbaseapp.com/#/");
+        webview.loadUrl("https://www.bilibili.com/");
     }
-
-
+    public void LoadURL(String url)
+    {
+        webview.loadUrl(url);
+    }
 
 }
