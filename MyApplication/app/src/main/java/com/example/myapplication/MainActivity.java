@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private WebView webView;
     //记录当前fragment
-    private int currentFragment = 3;
+    private int currentFragment = 2;
     //记录currentFragment是否需要变更
     private boolean currentFragmentFlag = false;
     @Override
@@ -47,9 +47,10 @@ public class MainActivity extends AppCompatActivity {
         bottom_navigation_bar_container
                 .addItem(new BottomNavigationItem(R.drawable.back,"")).setActiveColor(R.color.black).setInActiveColor(R.color.black)
                 .addItem(new BottomNavigationItem(R.drawable.next,"")).setActiveColor(R.color.purple_200).setInActiveColor(R.color.black)
-                .addItem(new BottomNavigationItem(R.drawable.search,"")).setActiveColor(R.color.purple_200).setInActiveColor(R.color.black)
+//                .addItem(new BottomNavigationItem(R.drawable.search,"")).setActiveColor(R.color.purple_200).setInActiveColor(R.color.black)
                 .addItem(new BottomNavigationItem(R.drawable.home,"")).setActiveColor(R.color.purple_200).setInActiveColor(R.color.black)
-                .addItem(menu).setActiveColor(R.color.purple_200).setInActiveColor(R.color.black)
+                .addItem(new BottomNavigationItem(R.drawable.window,"")).setActiveColor(R.color.purple_200).setInActiveColor(R.color.black)
+                .addItem(new BottomNavigationItem(R.drawable.user,"")).setActiveColor(R.color.purple_200).setInActiveColor(R.color.black)
                 .initialise();
         bottom_navigation_bar_container.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener(){
             //当点击进入这个fragment
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         }
         //进入时默认显示第一个fragment界面
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-        Fragment fragment=fragmentFactory.getFragment(3,3);
+        Fragment fragment=fragmentFactory.getFragment(2,2);
         fragmentTransaction.add(R.id.fragment_content,fragment);
         fragmentTransaction.commit();
 
