@@ -55,12 +55,10 @@ public class MainActivity extends AppCompatActivity {
             //当点击进入这个fragment
             @Override
             public void onTabSelected(int position) {
+                Log.d("tab select now page:",""+currentFragment);
+                Log.d("tab select dest page", ""+position);
 //                String s = ""+currentFragment;
 //                Toast.makeText(MainActivity.this,s,Toast.LENGTH_SHORT).show();
-                if(position>1){
-                    currentFragment = position;
-                }
-                Log.d("selected_page:",""+currentFragment);
                 Fragment fragment= fragmentFactory.getFragment(position,currentFragment);
                 //创建fragment管理器
                 FragmentManager fm=getSupportFragmentManager();
@@ -75,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
 //                    transaction.show(fragment);
                 //保存并提交
                 transaction.commit();
+
+                if(position>1){
+                    currentFragment = position;
+                }
+
             }
             //从这个fragment离开
             @Override

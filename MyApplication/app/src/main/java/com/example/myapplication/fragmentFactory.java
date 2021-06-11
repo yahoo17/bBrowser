@@ -26,13 +26,14 @@ public class fragmentFactory extends AppCompatActivity{
 
     public static Fragment getFragment(int postin,int cur){
         if(postin>1) return showFragment(postin);
-//        Log.d("current_page",""+cur);
+//       Log.d("current_page+ beeeeeeeee",""+cur);
         //获取当前fragment
+
         return showFragment(cur);
     }
 
     public static Fragment showFragment(int p){
-        Log.d("page:",""+p);
+        Log.d("now showFragment:",""+p);
         switch (p){
             case 2:
                 if (thirdFragment==null){
