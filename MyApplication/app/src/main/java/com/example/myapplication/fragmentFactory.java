@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
+import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.webkit.WebView;
 import android.widget.Toast;
 
@@ -12,30 +14,39 @@ import java.util.logging.Handler;
 import static android.widget.Toast.LENGTH_SHORT;
 
 public class fragmentFactory extends AppCompatActivity{
-    private static FirstFragment firstFragment=null;
-//    private static SecondFragment secondFragment=null;
-    private static ThirdFragment thirdFragment=null;
-//    private static ForthFragment forthFragment=null;
-    private static FifthFragment fifthFragment=null;
+    private static FirstFragment firstFragment=new FirstFragment();
+    private static SecondFragment secondFragment=null;
+    private static ThirdFragment thirdFragment=new ThirdFragment();
+    private static ForthFragment forthFragment=null;
+    private static FifthFragment fifthFragment=new FifthFragment();
+    private WebView webView = null;
     private static void getMenu(){
 
     }
 
-    public static Fragment getFragment(int postin){
-        switch (postin){
+    public static Fragment getFragment(int postin,int cur){
+        if(postin>1) return showFragment(postin);
+//        Log.d("current_page",""+cur);
+        //获取当前fragment
+        return showFragment(cur);
+    }
+
+    public static Fragment showFragment(int p){
+        Log.d("page:",""+p);
+        switch (p){
             case 2:
                 if (thirdFragment==null){
-                    thirdFragment=new ThirdFragment();
+//                    thirdFragment=new ThirdFragment();
                 }
                 return thirdFragment;
             case 3:
                 if (firstFragment==null){
-                    firstFragment=new FirstFragment();
+//                    firstFragment=new FirstFragment();
                 }
                 return firstFragment;
             case 4:
                 if (fifthFragment==null){
-                    fifthFragment=new FifthFragment();
+//                    fifthFragment=new FifthFragment();
                 }
                 return fifthFragment;
         }
