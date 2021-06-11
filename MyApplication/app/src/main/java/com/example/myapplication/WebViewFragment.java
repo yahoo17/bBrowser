@@ -12,6 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.fragment.app.Fragment;
+WebViewFragment::getInstance()::LoadURL
 
 public class WebViewFragment extends Fragment {
     private static final WebViewFragment INSTANCE = new WebViewFragment();
