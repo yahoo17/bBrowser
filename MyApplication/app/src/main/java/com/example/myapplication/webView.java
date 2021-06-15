@@ -13,7 +13,7 @@ public class webView extends AppCompatActivity {
     //private String url;
     //private TextView textView;
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.web_view);
 //        textView = (TextView) findViewById(R.id.web_view);
@@ -27,9 +27,4 @@ public class webView extends AppCompatActivity {
         webView.loadUrl(url);
 
     }
-
-//    @Override
-//    public void onClick(String text) {
-//        url = text;
-//    }
 }
