@@ -18,7 +18,7 @@
     <string name="input_url">搜索或输入网址</string>
 
     <!-- 网站首页 -->
-    <string name="home_url">https://cn.bing.com/</string>
+    <string name="home_url">https://www.bytedance.com/zh/</string>
 
     <!-- 底部导航 -->
     <string name="nav_right">前进</string>
