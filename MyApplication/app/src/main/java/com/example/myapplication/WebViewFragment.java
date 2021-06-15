@@ -18,8 +18,10 @@ import androidx.fragment.app.Fragment;
 
 public class WebViewFragment extends Fragment {
 
-    public static WebView webview;
     private static WebSettings settings;
+    private View view;
+    public static WebView webview;
+
 
     @Override
     public void onCreate( Bundle savedInstanceState) {
@@ -27,12 +29,9 @@ public class WebViewFragment extends Fragment {
         init();
     }
 
-    private View view;
-
 
     public void init()
     {
-        webview = (WebView) view.findViewById(R.id.webViewOnly);
         settings = webview.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
@@ -71,6 +70,7 @@ public class WebViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_webview, container,false);
+        webview = view.findViewById(R.id.webViewOnly);
         init();
         return view;
     }
@@ -84,9 +84,8 @@ public class WebViewFragment extends Fragment {
     }
 
 
-    public  void LoadURL(String url)
+    public void LoadURL(String url)
     {
-
         webview.loadUrl(url);
     }
 

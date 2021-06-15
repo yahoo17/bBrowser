@@ -19,7 +19,7 @@ public class fragmentFactory extends AppCompatActivity{
     private static WebViewFragment webViewFragment = new WebViewFragment();
 
     private static FifthFragment fifthFragment = null;
-    private static ForthFragment forthFragment = null;
+    //private static ForthFragment forthFragment = null;
 
     private static void getMenu(){
 
@@ -45,9 +45,8 @@ public class fragmentFactory extends AppCompatActivity{
             }
             case 2:
             {
-//
-                webViewFragment.LoadURL("http://www2.scut.edu.cn/gzic/");
-                return webViewFragment;
+//                webViewFragment.LoadURL("http://www2.scut.edu.cn/gzic/");
+//                return webViewFragment;
 //                if(webViewFragment==null) {
 //                    webViewFragment = new WebViewFragment();
 //                    Log.d("true","nothing");
@@ -57,16 +56,28 @@ public class fragmentFactory extends AppCompatActivity{
 ////                WebViewFragment.getInstance().LoadURL("http://www2.scut.edu.cn/gzic/");
 //////                webViewFragment.LoadURL("https://www.scut.edu.cn/new/");
 ////                return webViewFragment;
-//                if (thirdFragment==null){
-//                    thirdFragment=new ThirdFragment();
-//                }
-//                return thirdFragment;
+//                MainActivity.currentFragmentFlag = !MainActivity.currentFragmentFlag;
+//                Log.d(MainActivity.currentFragmentFlag+"","status!!!___Factory");
+                if (thirdFragment==null){
+                    thirdFragment=new ThirdFragment();
+                }
+                if(thirdFragment.webview!=null){
+                if (thirdFragment.flag) {
+                    thirdFragment.webview.loadUrl("https://www.baidu.com");
+                    thirdFragment.flag = false;
+                }
+                else {
+                    thirdFragment.webview.loadUrl("https://www.bilibili.com");
+                    thirdFragment.flag = true;
+                }
+            }
+                return thirdFragment;
             }
             case 3:
             {
 
-                webViewFragment.LoadURL("https://www.scut.edu.cn/new/");
-                return webViewFragment;
+//                webViewFragment.LoadURL("https://www.scut.edu.cn/new/");
+//                return webViewFragment;
 ////                webViewFragment.LoadURL("http://www2.scut.edu.cn/gzic/");
 ////                webViewFragment.LoadURL("https://fanyi.baidu.com/?aldtype=85#en/zh/window");
 //                return webViewFragment;

@@ -4,9 +4,11 @@ import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 //import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -19,8 +21,10 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ThirdFragment extends Fragment {
-    private WebView webview;
+    public WebView webview;
     private WebSettings settings;
+//    private View view;
+    public boolean flag=true;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,9 +65,42 @@ public class ThirdFragment extends Fragment {
             }
         });
         //打开的网址
-        webview.loadUrl("http://enquiries-2gjb84chaea8dede-1301979031.tcloudbaseapp.com/#/");
+        webview.loadUrl("http://www.baidu.com");
+//        else webview.loadUrl("www.baidu.com");
     }
 
+//    @Nullable
+//    @org.jetbrains.annotations.Nullable
+//    @Override
+//    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+//        Log.d(flag+"","status!!!");
+//        if(enter&&!flag){
+//            flag = true;
+//        } else {
+//            flag = false;
+//        }
+//        return super.onCreateAnimation(transit, enter, nextAnim);
+//    }
 
+//    @Override
+//    public void onResume() {
+//        Log.d(flag+"","status!!!");
+//        flag = !flag;
+//        if(flag) {
+//            webview.loadUrl("http://enquiries-2gjb84chaea8dede-1301979031.tcloudbaseapp.com/#/");
+////            flag = false;
+//        }
+//        else {
+//            webview.loadUrl("https://www.baidu.com/");
+////            flag = true;
+//        }
+//        super.onResume();
+//    }
 
+//    @Override
+//    public void onStart() {
+//        if(flag) flag = false;
+//        else flag = true;
+//        super.onStart();
+//    }
 }
