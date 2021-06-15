@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_marginTop="90dp"
+        android:layout_marginBottom="-120dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/planet"
+            android:layout_width="60dp"
+            android:layout_height="60dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:background="@drawable/space"
+
+            android:text="bBrowser"
+            android:gravity="center"
+            android:textSize="50sp"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"/>
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_margin="25dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/shape_edittext">
+
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="275dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_marginRight="10dp"
+
+                android:hint="搜索或输入网址" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/search1" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="29dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/baidu"
+                android:background="@drawable/baidu2"
+                android:layout_width="48dp"
+                android:layout_height="48dp"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="百度"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="29dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/weibo"
+                android:background="@drawable/weibo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="微博"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="29dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/google"
+                android:background="@drawable/google"
+                android:layout_width="48dp"
+                android:layout_height="48dp"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="谷歌"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="29dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/csdn"
+                android:background="@drawable/csdn"
+                android:layout_width="48dp"
+                android:layout_height="48dp"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="CSDN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="29dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/zhihu"
+                android:background="@drawable/zhihu"
+                android:layout_width="48dp"
+                android:layout_height="48dp"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="知乎"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="29dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/aiqiyi"
+                android:background="@drawable/aiqiyi"
+                android:layout_width="48dp"
+                android:layout_height="48dp"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="爱奇艺"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="29dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/add"
+                android:background="@drawable/add"
+                android:layout_width="48dp"
+                android:layout_height="48dp"/>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="更多"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
