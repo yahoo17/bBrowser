@@ -60,18 +60,19 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("tab select dest page", ""+position);
 //                String s = ""+currentFragment;
 //                Toast.makeText(MainActivity.this,s,Toast.LENGTH_SHORT).show();
-                Fragment fragment= fragmentFactory.getFragment(position,currentFragment);
+
+                Fragment fragment= fragmentFactory.getFragment(position);
                 //创建fragment管理器
                 FragmentManager fm=getSupportFragmentManager();
                 //获取fragment事务
                 FragmentTransaction transaction=fm.beginTransaction();
                 //判断fragment是否添加
-                if (!fragment.isAdded()){ //如果没有添加,进行添加到activity
-                    transaction.add(R.id.fragment_content,fragment);
-                }else {   //添加了，就进行显示
-                    transaction.show(fragment);
-                }
+//                if (!fragment.isAdded()){ //如果没有添加,进行添加到activity
+//                    transaction.add(R.id.fragment_content,fragment);
+//                }else {   //添加了，就进行显示
 //                    transaction.show(fragment);
+//                }
+                    transaction.show(fragment);
                 //保存并提交
                 transaction.commit();
 
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabUnselected(int position) {
                 if(position>1) {
-                    Fragment fragment=fragmentFactory.getFragment(position,currentFragment);
+                    Fragment fragment=fragmentFactory.getFragment(position);
                     FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
                     //离开tab.进行隐藏
                     transaction.hide(fragment);
@@ -116,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         }
         //进入时默认显示第一个fragment界面
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-        Fragment fragment=fragmentFactory.getFragment(2,2);
+        Fragment fragment=fragmentFactory.getFragment(2);
         fragmentTransaction.add(R.id.fragment_content,fragment);
         fragmentTransaction.commit();
 

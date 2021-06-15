@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,26 +12,27 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-WebViewFragment::getInstance()::LoadURL
+//WebViewFragment.getInstance().LoadURL()
 
 public class WebViewFragment extends Fragment {
-    private static final WebViewFragment INSTANCE = new WebViewFragment();
-    public static WebViewFragment getInstance(){
-        return INSTANCE;
-    }
-    private WebView webview;
-    private WebSettings settings;
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_webview, container,false);
-    }
+
+    public static WebView webview;
+    private static WebSettings settings;
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        webview = (WebView) view.findViewById(R.id.searchView);
+    public void onCreate( Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        init();
+    }
+
+    private View view;
+
+
+    public void init()
+    {
+        webview = (WebView) view.findViewById(R.id.webViewOnly);
         settings = webview.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
@@ -59,13 +61,66 @@ public class WebViewFragment extends Fragment {
                 handler.proceed();// 接受所有网站的证书
                 // handleMessage(Message msg);// 进行其他处理
             }
+
+
         });
         //打开的网址
-        webview.loadUrl("https://www.bilibili.com/");
+        webview.loadUrl("http://www2.scut.edu.cn/gzic/");
     }
-    public void LoadURL(String url)
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_webview, container,false);
+        init();
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+
+    }
+
+
+    public  void LoadURL(String url)
     {
+
         webview.loadUrl(url);
     }
+
+    public void GoBack(){
+        if (webview.canGoBack()) {
+            webview.goBack();
+
+        }
+//        webview.goBack();
+    }
+
+    public  void GoAhead(){
+        if(webview.canGoForward())
+            webview.goForward();
+    }
+
+//    public static void LoadURL(String url)
+//    {
+//
+//        if(instance.webview == null)
+//        {
+//            Log.d("","webview is empty");
+//        }
+//        else
+//        WebViewFragment.getInstance().webview.loadUrl(url);
+//    }
+//
+//    public static void GoBack(){
+//        instance.webview.goBack();
+//    }
+//
+//    public static void GoAhead(){
+//        instance.webview.goForward();
+//    }
+
 
 }
