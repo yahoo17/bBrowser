@@ -1,3 +1,8 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <!-- 顶部地址栏高度 -->
+    <dimen name="top_bar_height">40dp</dimen>
+
+    <!-- 地址栏背景间隙 -->
+    <dimen name="top_bar_bg_gap">5dp</dimen>
 </resources>
